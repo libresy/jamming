@@ -19,7 +19,7 @@ class SearchBar extends React.Component {
     handleTermChange(event) {
         this.setState({ term: event.target.value })
     };
-
+    //testing keydown or keypress
     onKeyDown(event) {
         if (event.key === "Enter" || event.key === 13) {
             this.props.onSearch(this.state.term);
