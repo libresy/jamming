@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
         this.setState({ term: event.target.value })
     };
     
-    //why can't I see this change on github on the site. I know it is checked in!
+    // I can't see this change on github on the site. I know it is checked in!
     onKeyDown(event) {
         if (event.key === "Enter" || event.key === 13) {
             this.props.onSearch(this.state.term);
