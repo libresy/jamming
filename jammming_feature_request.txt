@@ -1,0 +1,26 @@
+Feature Request: Pressing Enter Triggers a Search
+
+May 20, 2018
+
+OBJECTIVE 
+Give users the ability to search by pressing enter on their keyboard.
+
+BACKGROUND
+Jamming currently only supports searching after typing an artist, song or album 
+and pressing the "search" button below the input field. The user has to click out 
+of the search box and then click the button, it feels tedious to use the mouse.
+This feature will allow the user to click "enter," following their typed query
+This is expected user behavior and is available on most sites (see Google).
+Users expect this functionality.
+
+TECHNICAL DESIGN
+To implement this feature we will add new  Javascript method, onKeyDown to the SearchBar 
+component. onKeyDown will take one parameter, an event. The event's key value will be 
+the "enter" key. The .render() method of SearchBar will call the new method.
+
+
+CAVEATS
+If the "enter" key is pressed for a long enough time, it may start to repeat and the 
+keydown will repeatedly trigger. We can later address this concern by adding timestamps
+and calculating the difference between them before triggering the event.
+
