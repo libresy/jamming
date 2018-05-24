@@ -9,35 +9,36 @@ import Spotify from '../../util/Spotify';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+     this.state = {
       searchResults: [],
-      playlistName: 'New Playlist',
+      playlistName: 'Playlist',
       playlistTracks: []
-    };
+     }; 
 
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
+    Spotify.getAccessToken();
   };
 
   addTrack(track) {
+
     if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
-      return;
+        return;
     } else {
       let tracks = this.state.playlistTracks;
       tracks.push(track);
       this.setState({ playlistTracks: tracks });
     }
-    console.log(track);
   };
 
   removeTrack(track) {
     let tracks = this.state.playlistTracks;
     const newTracks = tracks.filter(playlistTrack => playlistTrack.id !== track.id);
     this.setState({ playlistTracks: newTracks });
-    console.log(newTracks);
+ 
   };
 
   updatePlaylistName(name) {
@@ -46,13 +47,11 @@ class App extends Component {
 
   savePlaylist() {
     const trackURIs = this.state.playlistTracks.map(track => track.uri);
-    const listName = this.state.playlistName;
-    Spotify.savePlaylist(listName, trackURIs)
+    Spotify.savePlaylist(this.state.playlistName, trackURIs)
     this.setState({
       playlistName: 'New Playlist',
       playlistTracks: []
     });
-    console.log(listName, trackURIs);
   };
 
   search(term) {
