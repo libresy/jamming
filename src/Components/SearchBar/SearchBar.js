@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
         this.setState({ term: event.target.value })
     };
     
-    //for feature request
+    // for new feature request
     onKeyDown(event) {
         if (event.key === "Enter" || event.key === 13) {
             this.props.onSearch(this.state.term);

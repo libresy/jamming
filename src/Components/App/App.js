@@ -20,11 +20,9 @@ class App extends Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
-    Spotify.getAccessToken();
   };
 
   addTrack(track) {
-
     if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
         return;
     } else {
@@ -32,26 +30,29 @@ class App extends Component {
       tracks.push(track);
       this.setState({ playlistTracks: tracks });
     }
+    console.log(track);
   };
 
   removeTrack(track) {
     let tracks = this.state.playlistTracks;
     const newTracks = tracks.filter(playlistTrack => playlistTrack.id !== track.id);
     this.setState({ playlistTracks: newTracks });
- 
+    console.log(newTracks);
   };
 
   updatePlaylistName(name) {
     this.setState({ playlistName: name });
   };
-
+//write to console
   savePlaylist() {
     const trackURIs = this.state.playlistTracks.map(track => track.uri);
-    Spotify.savePlaylist(this.state.playlistName, trackURIs)
+    const listName = this.state.playlistName;
+    Spotify.savePlaylist(listName, trackURIs)
     this.setState({
       playlistName: 'New Playlist',
       playlistTracks: []
     });
+    console.log(listName, trackURIs);
   };
 
   search(term) {
